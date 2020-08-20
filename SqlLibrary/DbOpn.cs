@@ -102,7 +102,7 @@ namespace SqlLibrary
                     return "";
                 }
 
-                if (!DB_SqlReader(strSql., ref sqlRdr))//データ取得
+                if (!DB_SqlReader(strSql, ref sqlRdr))//データ取得
                 {
                     return "";
                 }
