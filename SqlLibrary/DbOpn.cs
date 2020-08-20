@@ -89,21 +89,11 @@ namespace SqlLibrary
 
 
 
-        public string GET_headLine()
+        public string GET_headLine(string strSql)
         {
             SqlDataReader sqlRdr = null;
-            StringBuilder strSql = new StringBuilder();
-
+            
             string strHeadLine = "";
-
-            strSql.Append("SELECT b.big_urlroot, s.small_urlroot, k.kiji_id, k.title, k.description, k.ogimage, k.ins_date ");
-            strSql.Append("FROM m_kiji k ");
-            strSql.Append("INNER JOIN c_big_category b ");
-            strSql.Append("ON k.big_category_id = b.big_category_id ");
-            strSql.Append("INNER JOIN c_small_category s ");
-            strSql.Append("ON k.big_category_id = s.big_category_id ");
-            strSql.Append("AND k.small_category_id = s.small_category_id ");
-            strSql.Append("ORDER BY k.ins_date DESC ");
 
             try
             {
@@ -112,7 +102,7 @@ namespace SqlLibrary
                     return "";
                 }
 
-                if (!DB_SqlReader(strSql.ToString(), ref sqlRdr))//データ取得
+                if (!DB_SqlReader(strSql., ref sqlRdr))//データ取得
                 {
                     return "";
                 }
