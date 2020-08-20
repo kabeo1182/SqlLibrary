@@ -71,6 +71,7 @@ namespace SqlLibrary
         public bool DB_SqlReader(string strSql, ref SqlDataReader sqlRdr)
         {
             SqlCommand sqlCmn = new SqlCommand();
+            sqlCmn.CommandTimeout = 1000 ;
 
             try
             {
@@ -92,12 +93,15 @@ namespace SqlLibrary
         public string GET_headLine(string strSql)
         {
             SqlDataReader sqlRdr = null;
-            
             string strHeadLine = "";
+
+
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
 
             try
             {
-                if (!DB_Connect())//DB接続
+                if (!DB_Connect()　|| stopwatch.ElapsedMilliseconds > 3000)//DB接続
                 {
                     return "";
                 }
@@ -115,6 +119,7 @@ namespace SqlLibrary
             }
             finally
             {
+                stopwatch.Stop();
                 if (sqlRdr != null)
                 {
                     if (!sqlRdr.IsClosed)
