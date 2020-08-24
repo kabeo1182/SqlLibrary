@@ -33,7 +33,7 @@ namespace SqlLibrary
                                           "Min Pool Size=20;" +
                                           "Max Pool Size=200;" +
                                           "Connection Lifetime=2;"+
-                                          "Connection Timeout=30;" ;//DBの接続待機時間を30秒に設定
+                                          "Connection Timeout=3000;" ;//DBの接続待機時間を30秒に設定
 
                 if (DB_Connection.State == System.Data.ConnectionState.Closed)
                 {
@@ -87,7 +87,7 @@ namespace SqlLibrary
         public bool DB_SqlReader(string strSql, ref SqlDataReader sqlRdr)
         {
             SqlCommand sqlCmn = new SqlCommand();
-            sqlCmn.CommandTimeout = 60;//SQLの実行待機時間を60秒に設定
+            sqlCmn.CommandTimeout = 6000;//SQLの実行待機時間を60秒に設定
 
             try
             {
